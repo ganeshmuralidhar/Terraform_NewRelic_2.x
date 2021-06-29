@@ -20,19 +20,19 @@ These materials were prepared as part of the Observability Series with New Relic
 #### Recomended modules to start with Terraform and New Relic
 
 0. Use terraform init -upgrade to get the latest New Relic Provider
-1. Start with a basic example > small modules = tf_single_alert or tf_single_dashboard
-2. Combine dashboards and alerts > tf_single_alert + tf_single_dashboard = tf_module_examples
-3. Complex modules based on Google SRE 4 Golden Signals = tf_module_golden_signals
+1. Start with a basic example > small modules = tf_single_synthetic or tf_single_alert
+2. Build dashboards based on Google SRE 4 Golden Signals and alerts with NRQL > tf_alert_nrql + tf_single_dashboard
+3. Experiment on alert muting rules and other interesting resources > tf_alert_muting_rules
 
 ## Notes
 
 The provided tf files **WILL NOT** work out of the box.
 
-Look for **REPLACE HERE** in the code and please replace the following:
+Look for **vars.xxxx** in the code and please do the following:
 
--   api_key > Your New Relic [personal API](https://docs.newrelic.com/docs/apis/get-started/intro-apis/types-new-relic-api-keys#personal-api-key) key.
--   admin_api_key > Your New Relic [admin API](https://docs.newrelic.com/docs/apis/get-started/intro-apis/types-new-relic-api-keys#admin) key.
--   account_id > Your New Relic [account ID](https://docs.newrelic.com/docs/accounts/install-new-relic/account-setup/account-id).
+-   Create a variable.tf file in the same folder as .tf and add variables for API key and Account ID (and any other variables you may want)
+  -   api_key > Your New Relic [personal API](https://docs.newrelic.com/docs/apis/get-started/intro-apis/types-new-relic-api-keys#personal-api-key) key.
+  -   account_id > Your New Relic [account ID](https://docs.newrelic.com/docs/accounts/install-new-relic/account-setup/account-id).
 -   region > Your New Relic account's [data center region](https://docs.newrelic.com/docs/using-new-relic/welcome-new-relic/get-started/our-eu-us-region-data-centers) (US or EU).
 -   apm_appname > Your designated [application name](https://docs.newrelic.com/docs/agents/manage-apm-agents/app-naming/name-your-application).
 -   email > Your preferred [email address](https://docs.newrelic.com/docs/alerts/new-relic-alerts/managing-notification-channels/view-or-update-user-email-channels).
@@ -40,25 +40,6 @@ Look for **REPLACE HERE** in the code and please replace the following:
 Many [Terraform recommeded practices](https://www.terraform.io/docs/cloud/guides/recommended-practices/index.html) are applicable especially when it comes to encrypting [New Relic API keys](https://www.terraform.io/docs/state/sensitive-data.html).
 
 When using Terraform in your CI/CD pipeline, we recommend setting your environment variables within your platform's secrets management. Each platform, such as GitHub or CircleCI, has their own way of managing secrets and environment variables, so you will need to refer to your vendor's documentation for implemenation details.
-
-## Terraform Cloud
-
-With my personal deployment, I used [Terraform Cloud](https://app.terraform.io) to encrypt senstive data in the UI. You can use the same variables as seen here in Terraform Cloud.
-
-#### Terraform Cloud Variables
-
--   nr_api_key = (your personal API Key)
--   nr_admin_api_key = (your admin API Key)
--   nr_account_id = (your account ID)
--   nr_region = (your region)
--   nr_apm_appname = (your appname)
--   nr_email = (your email address)
-
-#### Terraform Cloud Environment Variables
-
--   CONFIRM_DESTROY = 1 (this settings will ensure a proper clean up)
-
-For more details, see [here](https://www.terraform.io/docs/cloud/workspaces/settings.html) for more Terraform settings.
 
 ## Addtional Links
 
