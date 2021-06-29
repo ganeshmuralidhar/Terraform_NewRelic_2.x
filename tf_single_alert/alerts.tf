@@ -8,9 +8,8 @@ terraform {
 }
 
 provider "newrelic" {
-  api_key = "YOUR API KEY HERE"
-  #admin_api_key = "REPLACE HERE"  ----- DONT NEED THIS ANYMORE -----
-  account_id = "YOUR ACCOUNT ID HERE"
+  api_key = var.APIKEY
+  account_id = var.ACCOUNTID
   region = "US"
 }
 

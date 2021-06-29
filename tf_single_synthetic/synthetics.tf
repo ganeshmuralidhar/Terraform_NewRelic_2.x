@@ -8,9 +8,8 @@ terraform {
 }
 
 provider "newrelic" {
-  api_key = "YOUR API KEY HERE"
-  #admin_api_key = "REPLACE HERE"  ----- DONT NEED THIS ANYMORE -----
-  account_id = "YOUR ACCOUNT ID HERE"
+  api_key = var.APIKEY
+  account_id = var.ACCOUNTID
   region = "US"
 }
 
@@ -22,7 +21,7 @@ resource "newrelic_synthetics_monitor" "tf_synthetic_monitor_as_code" {
   locations = ["AWS_US_EAST_1", "AWS_US_EAST_2"]
 
   uri                       = "<URL>"
-  validation_string         = "<VALIDATION CHECK>"
+  validation_string         = "<Validation Check>"
   verify_ssl                = false
 }
 

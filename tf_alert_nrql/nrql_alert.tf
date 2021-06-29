@@ -8,9 +8,8 @@ terraform {
 }
 
 provider "newrelic" {
-  api_key = "YOUR API KEY HERE"
-  #admin_api_key = "REPLACE HERE"  ----- DONT NEED THIS ANYMORE -----
-  account_id = "YOUR ACCOUNT ID HERE"
+  api_key = var.APIKEY
+  account_id = var.ACCOUNTID
   region = "US"
 }
 
@@ -28,8 +27,8 @@ resource "newrelic_alert_policy" "tf_nrql_alert_policy_as_code" {
 
 # Add an alert condition - Appdex
 resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_appdex" {
-  account_id                   = "<Your Account ID>"
-  policy_id                    = "${newrelic_alert_policy.tf_alert_policy_as_code.id}"
+  account_id                   = var.ACCOUNTID
+  policy_id                    = "${newrelic_alert_policy.tf_nrql_alert_policy_as_code.id}"
   type                         = "static"
   name                         = "TF-NRQL-Alerts-As-Code-Condition-Appdex"
   description                  = "Alert when Apdex score drop below 0.9 for more than 5 mins"
@@ -59,8 +58,8 @@ resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_appdex" {
 
 # Add an alert condition - Latency
 resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_latency" {
-  account_id                   = "<Your Account ID>"
-  policy_id                    = "${newrelic_alert_policy.tf_alert_policy_as_code.id}"
+  account_id                   = var.ACCOUNTID
+  policy_id                    = "${newrelic_alert_policy.tf_nrql_alert_policy_as_code.id}"
   type                         = "static"
   name                         = "TF-NRQL-Alerts-As-Code-Condition-Latency"
   description                  = "Alert when Latency increased above 1 sec for more than 5 mins"
@@ -90,7 +89,7 @@ resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_latency" {
 
 # Add an alert condition - Error Rate
 resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_error_rate" {
-  account_id                   = "<Your Account ID>"
+  account_id                   = var.ACCOUNTID
   policy_id                    = "${newrelic_alert_policy.tf_nrql_alert_policy_as_code.id}"
   type                         = "static"
   name                         = "TF-NRQL-Alerts-As-Code-Condition-ErrorRate"
@@ -121,7 +120,7 @@ resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_error_rate" {
 
 # Add an alert condition - Throughput
 resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_throughput" {
-  account_id                   = "<Your Account ID>"
+  account_id                   = var.ACCOUNTID
   policy_id                    = "${newrelic_alert_policy.tf_nrql_alert_policy_as_code.id}"
   type                         = "static"
   name                         = "TF-NRQL-Alerts-As-Code-Condition-Throughput"
@@ -152,7 +151,7 @@ resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_throughput" {
 
 # Add an alert condition - Infra CPU
 resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_infra_cpu" {
-  account_id                   = "<Your Account ID>"
+  account_id                   = var.ACCOUNTID
   policy_id                    = "${newrelic_alert_policy.tf_nrql_alert_policy_as_code.id}"
   type                         = "static"
   name                         = "TF-NRQL-Alerts-As-Code-Condition-Infra-CPU"
@@ -197,7 +196,7 @@ resource "newrelic_alert_channel" "tf_nrql_alert_email" {
 resource "newrelic_alert_policy_channel" "tf_nrql_alert_email" {
   policy_id  = "${newrelic_alert_policy.tf_nrql_alert_policy_as_code.id}"
   channel_ids = [
-    "${newrelic_alert_channel.tf_alert_email.id}"
+    "${newrelic_alert_channel.tf_nrql_alert_email.id}"
   ]
 }
 
