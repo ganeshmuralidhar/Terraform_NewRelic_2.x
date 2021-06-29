@@ -50,16 +50,6 @@ resource "newrelic_one_dashboard" "tf_dashboard_as_code" {
       }
     }
 
-#    widget_bar {
-#      title = "Average transaction duration, by Transaction"
-#      row = 3
-#      column = 1
-#      nrql_query {
-#        account_id = "3029157"
-#        query       = "FROM Transaction SELECT average(duration) FACET name"
-#      }
-#    }
-
 widget_billboard {
   title = "Success Count"
   row = 3
