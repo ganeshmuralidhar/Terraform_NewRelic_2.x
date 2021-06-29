@@ -8,9 +8,9 @@ terraform {
 }
 
 provider "newrelic" {
-  api_key = "NRAK-MZOETQ0IWSEJALFICS20ALSZAC6"
+  api_key = "YOUR API KEY HERE"
   #admin_api_key = "REPLACE HERE"  ----- DONT NEED THIS ANYMORE -----
-  account_id = "3029157"
+  account_id = "YOUR ACCOUNT ID HERE"
   region = "US"
 }
 
@@ -28,7 +28,7 @@ resource "newrelic_alert_policy" "tf_nrql_alert_policy_as_code" {
 
 # Add an alert condition - Appdex
 resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_appdex" {
-  account_id                   = "3029157"
+  account_id                   = "<Your Account ID>"
   policy_id                    = "${newrelic_alert_policy.tf_alert_policy_as_code.id}"
   type                         = "static"
   name                         = "TF-NRQL-Alerts-As-Code-Condition-Appdex"
@@ -59,7 +59,7 @@ resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_appdex" {
 
 # Add an alert condition - Latency
 resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_latency" {
-  account_id                   = "3029157"
+  account_id                   = "<Your Account ID>"
   policy_id                    = "${newrelic_alert_policy.tf_alert_policy_as_code.id}"
   type                         = "static"
   name                         = "TF-NRQL-Alerts-As-Code-Condition-Latency"
@@ -90,7 +90,7 @@ resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_latency" {
 
 # Add an alert condition - Error Rate
 resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_error_rate" {
-  account_id                   = "3029157"
+  account_id                   = "<Your Account ID>"
   policy_id                    = "${newrelic_alert_policy.tf_nrql_alert_policy_as_code.id}"
   type                         = "static"
   name                         = "TF-NRQL-Alerts-As-Code-Condition-ErrorRate"
@@ -121,7 +121,7 @@ resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_error_rate" {
 
 # Add an alert condition - Throughput
 resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_throughput" {
-  account_id                   = "3029157"
+  account_id                   = "<Your Account ID>"
   policy_id                    = "${newrelic_alert_policy.tf_nrql_alert_policy_as_code.id}"
   type                         = "static"
   name                         = "TF-NRQL-Alerts-As-Code-Condition-Throughput"
@@ -152,7 +152,7 @@ resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_throughput" {
 
 # Add an alert condition - Infra CPU
 resource "newrelic_nrql_alert_condition" "tf_nrql_alert_condition_infra_cpu" {
-  account_id                   = "3029157"
+  account_id                   = "<Your Account ID>"
   policy_id                    = "${newrelic_alert_policy.tf_nrql_alert_policy_as_code.id}"
   type                         = "static"
   name                         = "TF-NRQL-Alerts-As-Code-Condition-Infra-CPU"

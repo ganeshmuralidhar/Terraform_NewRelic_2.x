@@ -8,9 +8,9 @@ terraform {
 }
 
 provider "newrelic" {
-  api_key = "NRAK-MZOETQ0IWSEJALFICS20ALSZAC6"
-  #admin_api_key = "REPLACE HERE" ----- DONT NEED THIS ANYMORE -----
-  account_id = "3029157"
+  api_key = "YOUR API KEY HERE"
+  #admin_api_key = "REPLACE HERE"  ----- DONT NEED THIS ANYMORE -----
+  account_id = "YOUR ACCOUNT ID HERE"
   region = "US"
 }
 
@@ -21,8 +21,8 @@ resource "newrelic_synthetics_monitor" "tf_synthetic_monitor_as_code" {
   status = "ENABLED"
   locations = ["AWS_US_EAST_1", "AWS_US_EAST_2"]
 
-  uri                       = "http://65.1.226.30:8080/"
-  validation_string         = "PetClinic :: a Spring Framework demonstration"
+  uri                       = "<URL>"
+  validation_string         = "<VALIDATION CHECK>"
   verify_ssl                = false
 }
 
